@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FanPageLib</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="learn_more">Learn More</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="verify_your_pick_to_see_results">Verify your pick to see results</string>
+    <string name="enter_the_code_within_2_minutes_to_verify_your_pick">Enter the code within 2 minutes to verify your pick</string>
+    <string name="didn_t_get_the_code_click_to_resend_it">Didn\'t get the code? Click to resend it</string>
+    <string name="enter_the_code_you_received">ENTER THE CODE YOU RECEIVED ⏳</string>
+    <string name="or_use_your_email_address">Or use your email address</string>
+
+    <string name="edittext_hint_email"><font size="19">johnsmith@gmail.com</font></string>
+    <string name="edittext_hint_phone"><font size="19">enter phone number</font></string>
+
+
+</resources>

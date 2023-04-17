@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.fanpower.power.WebActivityFanPower">
+
+
+
+<!--    <ScrollView-->
+<!--    android:fillViewport="true"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--    <RelativeLayout-->
+<!--        android:orientation="vertical"-->
+<!--        android:id="@+id/mainLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+    <WebView
+        android:descendantFocusability="afterDescendants"
+        android:id="@+id/webView_"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.fanpower.lib.ui.views.FanPowerView
+            android:visibility="gone"
+            android:id="@+id/fanPowerView_"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.fanpower.lib.ui.views.FanPowerView>
+
+    </WebView>
+
+
+
+
+
+
+
+
+
+
+
+<!--    </RelativeLayout>-->
+
+
+<!--</ScrollView>-->
+
+
+
+</RelativeLayout>

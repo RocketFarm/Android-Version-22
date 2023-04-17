@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.QuestionsFragment">
+
+    <RelativeLayout
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        android:background="@drawable/white_background_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_above="@+id/bottomLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:fillViewport="true"-->
+<!--        android:layout_height="match_parent">-->
+
+        <RelativeLayout
+            android:layout_above="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:fontFamily="@font/outfit_semibold"
+        android:textSize="34dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="@string/hello_blank_fragment" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="visible"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/topScrollIndicator"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_alignTop="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/top_scroll_gradient"/>
+
+            <ImageView
+                android:visibility="visible"
+                android:id="@+id/bottomScrollIndicator"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_alignBottom="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/bottom_scroll_gradient"/>
+
+            <LinearLayout
+                android:id="@+id/verifyIdentityLayout"
+                android:layout_below="@+id/title"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <TextView
+                    android:visibility="invisible"
+                    android:id="@+id/timerText"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enter_the_code_within_2_minutes_to_verify_your_pick"
+                    android:textColor="@color/grey_light"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/outfit_regular"
+                    />
+
+                <TextView
+                    android:id="@+id/verifyTitle"
+                    android:gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/black_top_rounded_bottom_straight"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="@string/verify_your_pick_to_see_results"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/outfit_regular"
+                    />
+
+                <RelativeLayout
+                    android:background="@drawable/white_with_borders"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    >
+
+                <com.hbb20.CountryCodePicker
+                    android:layout_marginRight="-10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/countryCodePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccp_defaultNameCode="US"
+                app:ccp_defaultLanguage="ENGLISH"
+                app:ccp_contentColor="@color/background_grey"
+                app:ccp_textSize="24sp"
+                    app:ccp_countryPreference = "US"
+                app:ccp_arrowSize="20dp"
+                app:ccp_flagBorderColor="@color/background_grey"
+                app:ccp_textGravity="RIGHT"
+                app:ccp_showNameCode="false"
+                app:ccp_showFlag="true"
+                app:ccp_showFullName="false"
+                app:ccp_clickable="true"
+                app:ccp_showPhoneCode="true"
+                app:ccp_autoDetectCountry="false"
+                app:ccp_countryAutoDetectionPref="NETWORK_ONLY"
+                app:ccp_autoDetectLanguage="true"
+                app:ccp_autoFormatNumber="false"
+                app:ccp_rememberLastSelection="true"
+                app:ccp_selectionMemoryTag="signupCCP"
+                app:ccp_showArrow="false"
+                app:ccp_hintExampleNumber="false"
+                app:ccp_hintExampleNumberType="FIXED_LINE"
+                app:ccpDialog_keyboardAutoPopup="true"
+                app:ccpDialog_allowSearch="true"
+                app:ccpDialog_showPhoneCode="true"
+                    app:ccpDialog_showFastScroller="true"
+                    app:ccpDialog_fastScroller_bubbleColor="@color/background_grey"
+                    app:ccpDialog_fastScroller_handleColor="@color/background_grey"
+                    app:ccpDialog_backgroundColor="@color/white"
+                    app:ccpDialog_searchEditTextTint="@color/grey_indicator_bg"
+                    app:ccpDialog_textColor="@color/background_grey"
+                    app:ccpDialog_showCloseIcon="true"
+                    app:ccpDialog_showFlag="true"
+                    app:ccpDialog_showTitle="true"
+                    app:ccpDialog_initialScrollToSelection="true" />
+
+
+                    <EditText
+                        android:fontFamily="@font/outfit_semibold"
+                        android:textSize="24dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/countryCodePicker"
+                        android:layout_centerVertical="true"
+                        android:textCursorDrawable="@drawable/black_cursor"
+                        android:id="@+id/editTextCarrierNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:hint="@string/edittext_hint_phone"
+                        android:textColor="@color/background_grey"
+                        android:background="@null"
+                        android:textColorHint="@color/grey_hint"
+                        android:inputType="text"
+                        android:layout_toLeftOf="@+id/sendBtn"
+                        android:layout_marginRight="10dp"
+                        android:singleLine="true"
+                        />
+
+
+                    <ImageView
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:id="@+id/sendBtn"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/send_disabled"
+                        />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/resendCodeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/or_use_your_email_address"
+                    android:textSize="15dp"
+                    android:textColor="@color/yellow"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/outfit_regular"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+<!--    </androidx.core.widget.NestedScrollView>-->
+
+
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical"
+        android:id="@+id/bottomLayout"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="8dp"
+            android:layout_margin="5dp"
+            android:elevation="10dp">
+
+            <ImageView
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:id="@+id/adImage"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/outfit_bold"
+            android:id="@+id/bannerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make Your Pick"
+            android:textSize="23dp"
+            android:textColor="@color/white"/>
+
+
+        <TextView
+            android:visibility="gone"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:fontFamily="@font/figtree_bold"
+            android:id="@+id/bannerDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter to win a $500 shopping spree"
+            android:textSize="16dp"
+            android:textColor="@color/yellow"/>
+
+
+    </LinearLayout>
+
+
+    <ProgressBar
+
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+    </RelativeLayout>
+
+</RelativeLayout>
