@@ -41,16 +41,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         
           var fanPowerView = findViewById<FanPowerView>(R.id.fanPowerView)
-
-        fanPowerView.initView(
-            "your-tokenForJwtRequest",
+        
+         fanPowerView.initView("your-tokenForJwtRequest",
             0, // your-publisherId
             "your-publisherToken",
             "your-shareUrl",
-            supportFragmentManager
+            supportFragmentManager,
+            0f, // top margin from fanpower widget
+            0f, // bottom margin from fanpower widget
+            0, // widget height
+            webView
         )
     }
 }
 ```
 tokenForJwtRequest, publisherToken, and publisherId should be supplied to you by FanPower. ShareUrl is a URL that users will share when they use the widget's share feature. It is also used to create the referral URL. supportFragmentManager is the FragmentManager of your activity that you need to provide. 
+Top margin is the margin widget has from the top of scroll. Bottom margin is the margin widget has from bottom and widget height is the the total hieght of fan power view on screen. 
+
 
