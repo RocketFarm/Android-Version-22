@@ -58,4 +58,28 @@ class MainActivity : AppCompatActivity() {
 tokenForJwtRequest, publisherToken, and publisherId should be supplied to you by FanPower. ShareUrl is a URL that users will share when they use the widget's share feature. It is also used to create the referral URL. supportFragmentManager is the FragmentManager of your activity that you need to provide. 
 Top margin is the margin widget has from the top of scroll. Bottom margin is the margin widget has from bottom and widget height is the the total hieght of fan power view on screen. 
 
+# Using the widget with WebView 
+
+```
+//...... other code
+
+ <WebView
+        android:descendantFocusability="afterDescendants"
+        android:id="@+id/webView_"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.fanpower.lib.ui.views.FanPowerView
+            android:visibility="gone"
+            android:id="@+id/fanPowerView_"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.fanpower.lib.ui.views.FanPowerView>
+
+    </WebView>
+
+//........
+
+```
 
