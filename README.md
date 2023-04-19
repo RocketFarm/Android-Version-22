@@ -83,3 +83,4 @@ Top margin is the margin widget has from the top of scroll. Bottom margin is the
 
 ```
 
+And See the implementation of WebActivityFanPower in sample app to see how you need to implement WebView along with your Fan Power Widget. You need to follow the exact steps(code) as given in the activity and then your widget would work just fine with WebView. 
