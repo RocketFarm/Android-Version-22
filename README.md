@@ -6,7 +6,7 @@ Add the following in your module level gradle file
 
 ```
 dependencies {
-      implementation 'com.github.RocketFarm:fanpower-android-package:0.1.3'
+      implementation 'com.github.RocketFarm:Android-Version-22:0.0.3'
 }
 ```
 
