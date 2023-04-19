@@ -181,6 +181,8 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
                 Utilities.showKeyboard(requireActivity())
                 webView.clearFocus()
 
+                webView.scrollTo(webView.scrollX,webView.scrollY + Utilities.pxFromDp(requireActivity(),100f).toInt())
+
 
             }else{
                 Log.i(TAG, "edittext :  setUpView: not focused")

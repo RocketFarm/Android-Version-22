@@ -7,19 +7,6 @@
 
     tools:context="com.fanpower.power.WebActivityFanPower">
 
-
-
-<!--    <ScrollView-->
-<!--    android:fillViewport="true"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent">-->
-
-<!--    <RelativeLayout-->
-<!--        android:orientation="vertical"-->
-<!--        android:id="@+id/mainLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-
     <WebView
         android:descendantFocusability="afterDescendants"
         android:id="@+id/webView_"

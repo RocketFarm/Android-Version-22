@@ -33,10 +33,7 @@ class WebActivityFanPower : AppCompatActivity() {
 //
          webView = findViewById(R.id.webView_)
 
-        fanPowerView = findViewById<FanPowerView>(R.id.fanPowerView_)
-
-
-
+        fanPowerView = findViewById(R.id.fanPowerView_)
 
         webView.getSettings().setJavaScriptEnabled(true);
         val unencodedHtml =Utils.testHTMLWithId
@@ -55,18 +52,6 @@ class WebActivityFanPower : AppCompatActivity() {
 
         val base64 = Base64.encodeToString(unencodedHtml.toByteArray(), Base64.DEFAULT)
         webView.loadData(base64, "text/html; charset=utf-8", "base64");
-
-//        webView.setOnFocusChangeListener(OnFocusChangeListener { arg0, hasFocus ->
-//            if (!hasFocus) {
-//                Log.i(TAG, "onCreate:webview don't have focus")
-//                webView.requestFocus()
-//                webView.setFocusable(true);
-//            }else{
-//                Log.i(TAG, "onCreate:webview have focus")
-//            }
-//        })
-
-
 
          val heightWebViewJSScript = "(function() {var pageHeight = 0;function findHighestNode(nodesList) { for (var i = nodesList.length - 1; i >= 0; i--) {if (nodesList[i].scrollHeight && nodesList[i].clientHeight) {var elHeight = Math.max(nodesList[i].scrollHeight, nodesList[i].clientHeight);pageHeight = Math.max(elHeight, pageHeight);}if (nodesList[i].childNodes.length) findHighestNode(nodesList[i].childNodes);}}findHighestNode(document.documentElement.childNodes); return pageHeight;})()"
 
@@ -95,61 +80,39 @@ class WebActivityFanPower : AppCompatActivity() {
                             }
                         }, 300)
                     }
-                    // params.height
                 }
             }
         }
-
     }
 
-
     fun addFanPowerView(rects : List<Rect>,webViewHeight : Float){
-        Log.i(TAG, "addFanPowerView: rects " + rects.size)
-        if(rects.size == 0){
+        if(rects.size == 0)
             return
-        }
 
         var widgetHeight : Int= Utils.pxFromDp(this,640f).toInt()
 
-        Log.i(TAG, "addFanPowerView: widget height " + widgetHeight)
-
         var topMargin = Utils.pxFromDp(this,rects.get(0).top.toFloat() - rects.get(0).height()-Utils.pxFromDp(this,13f).toInt())
-   //     var topMargin = Utils.pxFromDp(this,rects.get(0).top.toFloat())
         var bottomMargin = webViewHeight - (topMargin + widgetHeight)
-
-      //  Log.i(TAG, "addFanPowerView: x is " + rects.get(0).exactCenterX() + " y is " + rects.get(0).top)
-        Log.i(TAG, "addFanPowerView: converted top of the view  is " + topMargin)
-        Log.i(TAG, "addFanPowerView: bottom margin is " + bottomMargin)
-        Log.i(TAG, "addFanPowerView: widget height is " + widgetHeight)
-
-        Log.i(TAG, "addFanPowerView: webview height " + webView.contentHeight * Resources.getSystem().displayMetrics.density)
 
         fanPowerView.initView("your-tokenForJwtRequest",
             0, // your-publisherId
             "your-publisherToken",
             "your-shareUrl",
             supportFragmentManager,
-            0f,
-            0f,
-            0,
-            webView
-        )
+        topMargin,
+        bottomMargin,
+        widgetHeight,
+        webView)
 
         fanPowerView.layoutParams.height = (topMargin + bottomMargin + widgetHeight).toInt()
     }
 
-
-
     override fun onBackPressed() {
-        // if your webview can go back it will go back
         if (webView.canGoBack()) {
             webView.goBack()
             Handler().postDelayed({
                 webView.scrollTo(0, 0)
                                   }, 500)
-
-            // if your webview cannot go back
-            // it will exit the application
         } else
             super.onBackPressed()
     }
