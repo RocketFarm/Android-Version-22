@@ -20,6 +20,8 @@ import android.webkit.WebView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -178,11 +180,15 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
             if (hasFocus) {
                 Log.d(TAG, "edittext : Focused Now!")
 
+                var isKeyBoardAlreadyOpen  = ViewCompat.getRootWindowInsets(v)?.isVisible(WindowInsetsCompat.Type.ime())
+
                 Utilities.showKeyboard(requireActivity())
+
                 webView.clearFocus()
-
-                webView.scrollTo(webView.scrollX,webView.scrollY + Utilities.pxFromDp(requireActivity(),100f).toInt())
-
+                if(!isKeyBoardAlreadyOpen!!) {
+                    webView.scrollTo(webView.scrollX, webView.scrollY + Utilities.pxFromDp(requireActivity(), 105f).toInt()
+                    )
+                }
 
             }else{
                 Log.i(TAG, "edittext :  setUpView: not focused")

@@ -99,10 +99,10 @@ class WebActivityFanPower : AppCompatActivity() {
             "your-publisherToken",
             "your-shareUrl",
             supportFragmentManager,
-        topMargin,
-        bottomMargin,
-        widgetHeight,
-        webView)
+            topMargin,
+            bottomMargin,
+            widgetHeight,
+            webView)
 
         fanPowerView.layoutParams.height = (topMargin + bottomMargin + widgetHeight).toInt()
     }
