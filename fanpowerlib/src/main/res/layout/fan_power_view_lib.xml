@@ -2,341 +2,332 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/baseLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/baseLayout"
 
     tools:context=".ui.activity.BaseActivity">
 
 
-<!--    <ScrollView-->
-<!--        android:id="@+id/scrollView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
+    <!--    <ScrollView-->
+    <!--        android:id="@+id/scrollView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
 
-<!--        <RelativeLayout-->
-<!--            android:clickable="false"-->
-<!--            android:background="@color/black_20_alpha"-->
-<!--            android:id="@+id/topLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-
-            <RelativeLayout
-                android:background="@color/black"
-                android:translationZ="1000dp"
-                android:id="@+id/mainWidgetView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/mainLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-    <ImageView
-        android:id="@+id/headerImg"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:scaleType="centerInside"
-        android:visibility="visible"
-        android:layout_marginTop="20dp"/>
-
-    <RelativeLayout
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/headerImg"
-        android:layout_above="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.fanpower.lib.ui.views.CustomViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-
-
-    </RelativeLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/bottomBar"
-        android:layout_marginBottom="15dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <RelativeLayout
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:padding="3dp"
-                android:id="@+id/termsAndConditionBtn"
-                android:layout_marginRight="170dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/terms_conditions"
-                android:textSize="12dp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/outfit_regular"
-                />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="190dp"
-                android:gravity="center">
-
-                <TextView
-                    android:padding="3dp"
-                    android:id="@+id/learnMoreBtn"
-                    android:drawablePadding="7dp"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/learn_more"
-                    android:textSize="12dp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/outfit_regular" />
-
-                <ImageView
-                    android:id="@+id/shareBtn"
-                   android:paddingRight="6dp"
-                    android:paddingLeft="6dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/share"/>
-
-            </LinearLayout>
-
-
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:layout_marginBottom="3dp"
-            android:layout_gravity="center"
-            android:background="@drawable/grey_rounded_background"
-            android:id="@+id/dotsIndicatorLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/dots"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                />
-
-<!--        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
-<!--            android:visibility="gone"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:paddingLeft="15dp"-->
-<!--            android:paddingRight="15dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:id="@+id/dots_indicator"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:dotsColor="@color/dotsUnselected"-->
-<!--            app:dotsCornerRadius="8dp"-->
-<!--            app:dotsSize="8dp"-->
-<!--            app:dotsSpacing="4dp"-->
-<!--            app:dotsWidthFactor="2.5"-->
-<!--            app:selectedDotColor="@color/white"-->
-<!--            app:progressMode="true"-->
-<!--            />-->
-
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
+    <!--        <RelativeLayout-->
+    <!--            android:clickable="false"-->
+    <!--            android:background="@color/black_20_alpha"-->
+    <!--            android:id="@+id/topLayout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
 
 
     <RelativeLayout
-        android:id="@+id/popupBg"
-        android:visibility="gone"
-        android:background="@drawable/yellow_white_gradient"
-        android:clickable="true"
+        android:id="@+id/mainWidgetView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginBottom="60dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/white_less_rounded_bg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Make your picks every week for a chance to win prizes from NASCAR!"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/outfit_semibold"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/go"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Let's Go! 💪"
-                android:textSize="16dp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/outfit_bold"
-                android:background="@drawable/black_rounded_borders"
-                />
-
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/sharePopup"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <View
-            android:id="@+id/bgTintShare"
-            android:background="@color/black_70_alpha"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:translationZ="1000dp">
 
         <RelativeLayout
-            android:id="@+id/sharePopUpCard"
+            android:id="@+id/mainLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/white_background_card">
-
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
             <ImageView
-                android:id="@+id/crossBtn"
+                android:id="@+id/headerImg"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:padding="15dp"
-                android:src="@drawable/cross" />
+                android:layout_height="55dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:scaleType="centerInside"
+                android:visibility="visible" />
 
-
-            <TextView
-                android:id="@+id/titlePopUp"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp"
-                android:fontFamily="@font/outfit_semibold"
-                android:gravity="center"
-                android:text="Share Your Pick With The World!"
-                android:textColor="@color/black"
-                android:textSize="42dp" />
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomBar"
+                android:layout_below="@+id/headerImg"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp">
 
+                <com.fanpower.lib.ui.views.CustomViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:id="@+id/twitterBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/titlePopUp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/twitter_btn"
-                android:foreground="?android:attr/selectableItemBackground" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:id="@+id/facebookBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/twitterBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/facebook_btn"
-                android:foreground="?android:attr/selectableItemBackground" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:id="@+id/smsBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/facebookBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/sms_btn"
-                android:foreground="?android:attr/selectableItemBackground" />
-
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-
-    </RelativeLayout>
-
-                <ProgressBar
-                    android:clickable="false"
-                    android:indeterminate="true"
-                    android:indeterminateTint="@color/yellow"
-                    android:elevation="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/progressbar"
-                    android:visibility="gone"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_centerInParent="true"
-                    />
 
             </RelativeLayout>
 
 
-<!--        </RelativeLayout>-->
+            <LinearLayout
+                android:id="@+id/bottomBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
 
 
-<!--    </ScrollView>-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/termsAndConditionBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="170dp"
+                        android:fontFamily="@font/outfit_regular"
+                        android:padding="3dp"
+                        android:text="@string/terms_conditions"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="190dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/learnMoreBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="7dp"
+                            android:fontFamily="@font/outfit_regular"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:text="@string/learn_more"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <ImageView
+                            android:id="@+id/shareBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="6dp"
+                            android:paddingRight="6dp"
+                            android:src="@drawable/share" />
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dotsIndicatorLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/grey_rounded_background"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/dots"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="10dp" />
+
+                    <!--        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
+                    <!--            android:visibility="gone"-->
+                    <!--            android:layout_centerHorizontal="true"-->
+                    <!--            android:paddingLeft="15dp"-->
+                    <!--            android:paddingRight="15dp"-->
+                    <!--            android:layout_gravity="center"-->
+                    <!--            android:id="@+id/dots_indicator"-->
+                    <!--            android:layout_width="wrap_content"-->
+                    <!--            android:layout_height="wrap_content"-->
+                    <!--            app:dotsColor="@color/dotsUnselected"-->
+                    <!--            app:dotsCornerRadius="8dp"-->
+                    <!--            app:dotsSize="8dp"-->
+                    <!--            app:dotsSpacing="4dp"-->
+                    <!--            app:dotsWidthFactor="2.5"-->
+                    <!--            app:selectedDotColor="@color/white"-->
+                    <!--            app:progressMode="true"-->
+                    <!--            />-->
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/popupBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/yellow_white_gradient"
+                android:clickable="true"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="60dp"
+                    android:background="@drawable/white_less_rounded_bg"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:fontFamily="@font/outfit_semibold"
+                        android:gravity="center"
+                        android:text="Make your picks every week for a chance to win prizes from NASCAR!"
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/go"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/black_rounded_borders"
+                        android:fontFamily="@font/outfit_bold"
+                        android:text="Let's Go! 💪"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sharePopup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/bgTintShare"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black_70_alpha" />
+
+                <RelativeLayout
+                    android:id="@+id/sharePopUpCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/white_background_card">
+
+
+                    <ImageView
+                        android:id="@+id/crossBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="10dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:padding="15dp"
+                        android:src="@drawable/cross" />
+
+
+                    <TextView
+                        android:id="@+id/titlePopUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="60dp"
+                        android:fontFamily="@font/outfit_semibold"
+                        android:gravity="center"
+                        android:text="Share Your Pick With The World!"
+                        android:textColor="@color/black"
+                        android:textSize="42dp" />
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/twitterBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/titlePopUp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/twitter_btn"
+                        android:foreground="?android:attr/selectableItemBackground" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/facebookBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/twitterBtn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/facebook_btn"
+                        android:foreground="?android:attr/selectableItemBackground" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/smsBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/facebookBtn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="25dp"
+                        android:background="@drawable/sms_btn"
+                        android:foreground="?android:attr/selectableItemBackground" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            android:elevation="10dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/yellow"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+    <!--        </RelativeLayout>-->
+
+
+    <!--    </ScrollView>-->
 
 
 </RelativeLayout>

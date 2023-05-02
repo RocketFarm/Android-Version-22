@@ -11,7 +11,7 @@ data class CarouselResponse(
     val league_id: Int,
     val name: String,
     val private_props: Boolean,
-    val prop_ids: List<PropId>,
+    val prop_ids: ArrayList<PropId>,
     val publisher_id: String,
     val start_date: Any,
     val tags: List<Any>,

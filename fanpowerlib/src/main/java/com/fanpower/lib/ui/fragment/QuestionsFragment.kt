@@ -45,12 +45,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webView: WebView) : Fragment() {
+class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webView: WebView, isInLineView : Boolean) : Fragment() {
 
     private var emailForVerification = ""
     private var phoneNumberForVerification = ""
     private val TAG = "QuestionsFragment"
     private var onsucessCallback : VerificationPopUpShownCallback
+    private var isInLineView = false
 
     private lateinit var binding: FragmentQuestionsBinding
 
@@ -84,6 +85,7 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
     init {
         this.onsucessCallback = onsucessCallback
         this.webView = webView
+        this.isInLineView = isInLineView
     }
 
     override fun onCreateView(
@@ -144,8 +146,10 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
                     binding.sendBtn.setBackgroundResource(R.drawable.send_selected)
                 }
 
-                if(webView != null)
-                     webView.clearFocus()
+                if(isInLineView) {
+                    if (webView != null)
+                        webView.clearFocus()
+                }
             }
         })
 
@@ -178,18 +182,22 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
 
         binding.editTextCarrierNumber.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                Log.d(TAG, "edittext : Focused Now!")
+                if(isInLineView) {
+                    Log.d(TAG, "edittext : Focused Now!")
 
-                var isKeyBoardAlreadyOpen  = ViewCompat.getRootWindowInsets(v)?.isVisible(WindowInsetsCompat.Type.ime())
+                    var isKeyBoardAlreadyOpen =
+                        ViewCompat.getRootWindowInsets(v)?.isVisible(WindowInsetsCompat.Type.ime())
 
-                Utilities.showKeyboard(requireActivity())
+                    Utilities.showKeyboard(requireActivity())
 
-                webView.clearFocus()
-                if(!isKeyBoardAlreadyOpen!!) {
-                    webView.scrollTo(webView.scrollX, webView.scrollY + Utilities.pxFromDp(requireActivity(), 105f).toInt()
-                    )
+                    webView.clearFocus()
+                    if (!isKeyBoardAlreadyOpen!!) {
+                        webView.scrollTo(
+                            webView.scrollX,
+                            webView.scrollY + Utilities.pxFromDp(requireActivity(), 105f).toInt()
+                        )
+                    }
                 }
-
             }else{
                 Log.i(TAG, "edittext :  setUpView: not focused")
             }
@@ -570,8 +578,14 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
                 createFanPick(selectedPickId,selectedPickTitle)
                 getFanPicks()
 
-                val imm = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
-                imm?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+
+                var isKeyBoardAlreadyOpen  = ViewCompat.getRootWindowInsets(binding.editTextCarrierNumber)?.isVisible(WindowInsetsCompat.Type.ime())
+
+                if(isKeyBoardAlreadyOpen == true) {
+                    val imm =
+                        context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
+                    imm?.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+                }
 
                 adapter.setAnswerModeView(true)
             }
@@ -581,6 +595,7 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
                 if(!isAdded){
                     return
                 }
+
                 if(messageResponse != null){
                     activity?.runOnUiThread {
                         if(messageResponse.message.contains("invalid") || messageResponse.message.contains("Incorrect")){
@@ -611,8 +626,6 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
                     var ad : AdsResponseItem  = list.get(0)
                     Log.i(TAG, "onSuccess: add to load " + ad)
                     Picasso.get().load(ad.ad_image).into(binding.adImage)
-
-
                 }
             }
 

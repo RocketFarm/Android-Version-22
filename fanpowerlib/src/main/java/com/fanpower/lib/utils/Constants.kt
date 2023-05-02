@@ -41,6 +41,9 @@ class Constants {
         const val PrePickAdId = 1
         const val VerifyAdId = 2
         const val PostPickAdId = 4
+
+        const val WidgetHeightGeneral = 550 // 550px
+
       //  var publisherShareUrl = "https://www.google.com/"
     }
 }

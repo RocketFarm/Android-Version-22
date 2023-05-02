@@ -40,6 +40,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FanPowerView : RelativeLayout {
@@ -57,7 +58,7 @@ class FanPowerView : RelativeLayout {
     //  private  var activity: Activity? = null
 //    private lateinit var context : Context
 
-    private lateinit var propIds: List<PropId>
+    private lateinit var propIds: ArrayList<PropId>
     private var publisherId: Int = 0
     private var publisherToken: String = ""
     private var publisher: Publisher? = null
@@ -67,10 +68,10 @@ class FanPowerView : RelativeLayout {
 
     private var urlToShare = ""
 
-
     private var props = ArrayList<Prop>()
     private var hasUserPickedArray = ArrayList<Boolean>()
     private var dots: List<ImageView>? = null
+    private var isInLineView = false
 
     private var currentAlpha = 0f
     //    private var compassNeedle: ImageView? = null
@@ -99,23 +100,59 @@ class FanPowerView : RelativeLayout {
         publisherToken: String,
         shareUrl: String,
         fragmentManager : FragmentManager,
+    ){
+        this.tokenForJwtRequest = tokenForJwtRequest
+        //   this.propIds = propIds
+        this.publisherId = publisherId
+        this.shareUrl = shareUrl
+        this.publisherToken = publisherToken
+        this.fragmentManager = fragmentManager
+
+        isInLineView = false
+
+        initViews(false)
+    }
+
+    fun initViewWithInline(
+        tokenForJwtRequest: String,
+        publisherId: Int,
+        publisherToken: String,
+        shareUrl: String,
+        propIdArray : List<Int>,
+        fragmentManager : FragmentManager,
         topMargin: Float,
         bottomMargin : Float,
         widgetHeight : Int,
         webView : WebView
     ) {
-      //  this.activity = Utilities.getActivity(this)
-     //   this.context = context
-        this.tokenForJwtRequest = tokenForJwtRequest
-     //   this.propIds = propIds
-        this.publisherId = publisherId
-        this.shareUrl = shareUrl
-        this.publisherToken = publisherToken
-        this.fragmentManager = fragmentManager
         this.topMarginInScrollView = topMargin
         this.bottomMarginInScrollView = bottomMargin
         this.widgetHeight = widgetHeight
         this.webView = webView
+
+        this.tokenForJwtRequest = tokenForJwtRequest
+        //   this.propIds = propIds
+        this.publisherId = publisherId
+        this.shareUrl = shareUrl
+        this.publisherToken = publisherToken
+        this.fragmentManager = fragmentManager
+
+        propIds = ArrayList()
+
+        for(x in propIdArray){
+        var prop = PropId(0,"",0,x,"")
+            propIds.add(prop)
+        }
+
+      //  this.propIds = propIdArray
+
+        isInLineView = true
+
+        initViews(true)
+
+    }
+
+    private fun initViews(isInline: Boolean){
 
         SharedPrefs.Utils.saveAdminToken(context, publisherToken)
         SharedPrefs.Utils.savePublisherId(context, publisherId)
@@ -124,9 +161,9 @@ class FanPowerView : RelativeLayout {
         SharedPrefs.Utils.saveTokenForJWTRequest(context, tokenForJwtRequest)
         SharedPrefs.Utils.saveSourceUrl(context, this.shareUrl)
 
+        webView = WebView(context)
+
         Utilities.getActivity(this)?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-
-
 
 //        if(SharedPrefs.Utils.getIsFirstRun(context)){
 //            binding.popupBg.visibility = VISIBLE
@@ -134,40 +171,36 @@ class FanPowerView : RelativeLayout {
 //            binding.popupBg.visibility = GONE
 //        }
 
-        setUpWidgetMargins()
+        setUpWidgetMargins(isInline)
         setUpBtns()
         //    setupViewPager()
         setUpApis()
 
-
     }
 
-    private fun setUpWidgetMargins(){
-        Log.i(TAG, "setUpWidgetMargins: scrollview height " + (topMarginInScrollView + bottomMarginInScrollView + widgetHeight))
+    private fun setUpWidgetMargins(isInline: Boolean){
+        if(!isInline){ // simple fan power view
+            binding.mainWidgetView.layoutParams.height = RelativeLayout.LayoutParams.MATCH_PARENT
+        }else { // scrollable fan power view
 
- //       binding.topLayout.layoutParams.width = LayoutParams.MATCH_PARENT
-       binding.baseLayout.layoutParams.height = (topMarginInScrollView + bottomMarginInScrollView + widgetHeight).toInt()
+            if (widgetHeight == 0) {
+                widgetHeight =
+                    Utilities.pxFromDp(context, Constants.Generic.WidgetHeightGeneral.toFloat())
+                        .toInt()
+            }
+            Log.i(
+                TAG,
+                "setUpWidgetMargins: scrollview height " + (topMarginInScrollView + bottomMarginInScrollView + widgetHeight)
+            )
 
-   //     binding.scrollView.isEnabled = false
+            //       binding.topLayout.layoutParams.width = LayoutParams.MATCH_PARENT
+            binding.baseLayout.layoutParams.height =
+                (topMarginInScrollView + bottomMarginInScrollView + widgetHeight).toInt()
 
-
-        binding.mainWidgetView.translationX = 0f
-        binding.mainWidgetView.translationY = topMarginInScrollView
-        binding.mainWidgetView.layoutParams.height = widgetHeight
-
-   //     binding.mainWidgetView.translationY = Utilities.pxFromDp(context,topMarginInScrollView)
-//        binding.topLayout.translationZ = 2000f
-//        binding.topLayout.elevation = 2000f
-//
-//
-
-
-//        (binding.topLayout.getParent() as View).requestLayout()
-//        binding.topLayout.bringToFront()
-//        binding.topLayout.invalidate();
-
-
-   //     binding.mainWidgetView.layoutParams.height = widgetHeight.toInt()
+            binding.mainWidgetView.translationX = 0f
+            binding.mainWidgetView.translationY = topMarginInScrollView
+            binding.mainWidgetView.layoutParams.height = widgetHeight
+        }
     }
 
     private fun setUpBtns() {
@@ -225,11 +258,11 @@ class FanPowerView : RelativeLayout {
 
         binding.facebookBtn.setOnClickListener {
 
-            var title = ""
-            Log.i(TAG, "setUpBtns: twiter link " + urlToShare)
-            if (props != null && props.size >= binding.viewPager.currentItem && props.size != 0) {
-                title = props.get(binding.viewPager.currentItem).proposition
-            }
+//            var title = ""
+//            Log.i(TAG, "setUpBtns: twiter link " + urlToShare)
+//            if (props != null && props.size >= binding.viewPager.currentItem && props.size != 0) {
+//                title = props.get(binding.viewPager.currentItem).proposition
+//            }
 
           //  title = title + "&hashtags=makeyourpick "
 
@@ -240,11 +273,16 @@ class FanPowerView : RelativeLayout {
             var intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_TEXT, urlToShare)
+
+       //     var checkIfFacebookInstalled = Utilities.isPackageInstalled("com.facebook.katana",context)
+        //    Log.i(TAG, "setUpBtns: is facebook installed " + checkIfFacebookInstalled)
+
             var facebookAppFound = false
             val matches: List<ResolveInfo> = context.getPackageManager()!!.queryIntentActivities(intent, 0)
             for (info in matches) {
+                Log.i(TAG, "setUpBtns: info activity " + info.activityInfo.packageName)
                 if (info.activityInfo.packageName.lowercase(Locale.getDefault())
-                        .startsWith("com.facebook.katana")
+                        .contains("facebook")
                 ) {
                     intent.setPackage(info.activityInfo.packageName)
                     facebookAppFound = true
@@ -416,7 +454,7 @@ class FanPowerView : RelativeLayout {
                         hasUserPickedArray.set(index, true)
                     }
                 }
-            },webView);
+            },webView,isInLineView);
 
             frag.arguments = bundle
 
@@ -510,7 +548,11 @@ class FanPowerView : RelativeLayout {
                 if (publisher != null) {
                     binding.mainLayout.visibility = View.VISIBLE
                     randerUiWithPublisher()
-                    getCarouselData()
+                    if(propIds != null && propIds.size>0){
+                        getProps()
+                    }else {
+                        getCarouselData()
+                    }
 
                     if (SharedPrefs.Utils.isLoggedIn(context)) {
                         ApiManager.getFanProfile(context)

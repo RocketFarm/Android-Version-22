@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.PackageManager.NameNotFoundException
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -188,6 +190,8 @@ class Utilities {
             return dp * context.resources.displayMetrics.density
         }
 
+
+
         fun showKeyboard(mEtSearch: EditText, context: Context) {
             mEtSearch.requestFocus()
             val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -200,6 +204,20 @@ class Utilities {
             assert(view != null)
             methodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
         }
+
+
+
+        fun isPackageInstalled(packageName: String, context: Context): Boolean {
+            return try {
+                val packageManager = context.packageManager
+                packageManager.getPackageInfo(packageName, 0)
+                true
+            } catch (e: PackageManager.NameNotFoundException) {
+                false
+            }
+        }
+
+
 
     }
 
