@@ -10,11 +10,8 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
+import android.view.*
 import android.view.View.OnFocusChangeListener
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import android.widget.Toast
@@ -97,7 +94,7 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
         view_ = binding.root
 
 //        requireActivity().getWindow()
-//            .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+//            .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         val bundle = arguments
         if (bundle != null) {
@@ -192,11 +189,13 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
 
                     webView.clearFocus()
                     if (!isKeyBoardAlreadyOpen!!) {
-                        webView.scrollTo(
-                            webView.scrollX,
-                            webView.scrollY + Utilities.pxFromDp(requireActivity(), 105f).toInt()
-                        )
+                        Log.i(TAG, "setUpView: keyboard is not already open")
+                        webView.scrollTo(webView.scrollX, webView.scrollY + Utilities.pxFromDp(requireActivity(), 105f).toInt())
+                    }else{
+                        Log.i(TAG, "setUpView: keyboard is already open")
                     }
+                }else{
+                    Log.i(TAG, "setUpView: not inline view")
                 }
             }else{
                 Log.i(TAG, "edittext :  setUpView: not focused")

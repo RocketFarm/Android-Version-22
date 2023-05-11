@@ -27,11 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-
     <TextView
-        android:fontFamily="@font/outfit_semibold"
-        android:textSize="34dp"
+        android:fontFamily="@font/stainless_bold"
+        android:textSize="35dp"
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="7dp"
@@ -98,7 +96,7 @@
                     android:text="@string/enter_the_code_within_2_minutes_to_verify_your_pick"
                     android:textColor="@color/grey_light"
                     android:textSize="14dp"
-                    android:fontFamily="@font/outfit_regular"
+                    android:fontFamily="@font/stainless_regular"
                     />
 
                 <TextView
@@ -113,7 +111,7 @@
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="16dp"
-                    android:fontFamily="@font/outfit_regular"
+                    android:fontFamily="@font/stainless_regular"
                     />
 
                 <RelativeLayout
@@ -169,7 +167,7 @@
 
 
                     <EditText
-                        android:fontFamily="@font/outfit_semibold"
+                        android:fontFamily="@font/stainless_cond_bold"
                         android:textSize="24dp"
                         android:layout_marginLeft="20dp"
                         android:layout_toRightOf="@+id/countryCodePicker"
@@ -211,7 +209,7 @@
                     android:textSize="15dp"
                     android:textColor="@color/yellow"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/outfit_regular"
+                    android:fontFamily="@font/stainless_regular"
                     />
 
             </LinearLayout>
@@ -261,7 +259,7 @@
             android:layout_marginBottom="0dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:fontFamily="@font/outfit_bold"
+            android:fontFamily="@font/stainless_bold"
             android:id="@+id/bannerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -278,7 +276,7 @@
             android:layout_marginBottom="15dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:fontFamily="@font/figtree_bold"
+            android:fontFamily="@font/stainless_bold"
             android:id="@+id/bannerDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

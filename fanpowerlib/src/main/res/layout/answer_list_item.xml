@@ -47,12 +47,12 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="70dp"
-            android:fontFamily="@font/outfit_medium"
+            android:fontFamily="@font/stainless_medium"
             android:gravity="center_vertical"
             android:minHeight="40dp"
             android:text="test"
             android:textAllCaps="true"
-            android:textSize="14dp" />
+            android:textSize="16dp" />
 
         <TextView
             android:id="@+id/percentage"
@@ -61,7 +61,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:fontFamily="@font/outfit_bold"
+            android:fontFamily="@font/stainless_bold"
             android:text=""
             android:textSize="14dp"
             android:visibility="gone" />

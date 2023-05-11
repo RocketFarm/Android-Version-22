@@ -76,19 +76,21 @@ class WebActivityFanPower : AppCompatActivity() {
             return
 
         var widgetHeight : Int= Utils.pxFromDp(this,620f).toInt() // provide your size in the function
-        var topMargin = Utils.pxFromDp(this,rects.get(0).top.toFloat()) - Utils.pxFromDp(this,rects.get(0).height().toFloat()) - Utils.pxFromDp(this,40f)
+        var topMargin = Utils.pxFromDp(this,rects.get(0).top.toFloat()) - Utils.pxFromDp(this,rects.get(0).height().toFloat()) - Utils.pxFromDp(this,50f)
         var bottomMargin = webViewHeight - (topMargin + widgetHeight)
 
-        fanPowerView.initViewWithInline("your-tokenForJwtRequest",
-            0, // your-publisherId
-            "your-publisherToken",
-            "your-shareUrl",
+        fanPowerView.initViewWithInline("cf661c909c1dfc7d234b7f4ef10aa67d",
+            367,
+            "e3d6fe91-4f8e-4c9b-b805-d20b6a000ecf",
+            "https://staging.playpickup.com/props",
             listOf(),
             supportFragmentManager,
             topMargin,
             bottomMargin,
             widgetHeight,
-            webView)
+            webView
+        )
+
 
         fanPowerView.layoutParams.height = (topMargin + bottomMargin + widgetHeight).toInt()
     }
