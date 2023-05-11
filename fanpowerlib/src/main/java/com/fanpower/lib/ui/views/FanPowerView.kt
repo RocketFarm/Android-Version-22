@@ -149,7 +149,6 @@ class FanPowerView : RelativeLayout {
         isInLineView = true
 
         initViews(true)
-
     }
 
     private fun initViews(isInline: Boolean){
@@ -161,7 +160,9 @@ class FanPowerView : RelativeLayout {
         SharedPrefs.Utils.saveTokenForJWTRequest(context, tokenForJwtRequest)
         SharedPrefs.Utils.saveSourceUrl(context, this.shareUrl)
 
-        webView = WebView(context)
+        if(!isInLineView) {
+            webView = WebView(context)
+        }
 
         Utilities.getActivity(this)?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
