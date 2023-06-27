@@ -32,6 +32,7 @@ data class Publisher(
     val tenant_id: Any,
     val tenant_name: Any,
     val text_link_color: String,
-    val updated_at: String
+    val updated_at: String,
+
 
 )

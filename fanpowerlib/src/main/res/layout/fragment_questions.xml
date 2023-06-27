@@ -29,7 +29,7 @@
 
     <TextView
         android:fontFamily="@font/stainless_bold"
-        android:textSize="35dp"
+        android:textSize="31dp"
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="7dp"
@@ -124,6 +124,7 @@
                     >
 
                 <com.hbb20.CountryCodePicker
+                    android:visibility="gone"
                     android:layout_marginRight="-10dp"
                     android:layout_marginLeft="10dp"
                     android:id="@+id/countryCodePicker"
@@ -167,6 +168,7 @@
 
 
                     <EditText
+                        android:imeOptions="actionDone"
                         android:fontFamily="@font/stainless_cond_bold"
                         android:textSize="24dp"
                         android:layout_marginLeft="20dp"
@@ -177,7 +179,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:editable="false"
-                        android:hint="@string/edittext_hint_phone"
+                        android:hint="@string/edittext_hint_email"
                         android:textColor="@color/background_grey"
                         android:background="@null"
                         android:textColorHint="@color/grey_hint"
@@ -200,12 +202,58 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/iHaveReadLayout"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/iHaveReadCheckbox"
+                        app:buttonTint="@color/blue_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <TextView
+                        android:layout_toRightOf="@+id/iHaveReadCheckbox"
+                        android:textColorLink="@color/blue_checkbox"
+                        android:layout_marginLeft="0dp"
+                        android:visibility="visible"
+                        android:id="@+id/iHaveReadText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/terms_conditions_"
+                        android:lineSpacingExtra="2dp"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/stainless_regular"
+                        />
+
+                </RelativeLayout>
+
+<!--                <TextView-->
+<!--                    android:visibility="visible"-->
+<!--                    android:id="@+id/resendCodeText"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/or_use_your_email_address"-->
+<!--                    android:textSize="15dp"-->
+<!--                    android:textColor="@color/yellow"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:fontFamily="@font/stainless_regular"-->
+<!--                    />-->
+
                 <TextView
                     android:visibility="visible"
                     android:id="@+id/resendCodeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/or_use_your_email_address"
+                    android:text=""
                     android:textSize="15dp"
                     android:textColor="@color/yellow"
                     android:layout_marginTop="10dp"

@@ -28,6 +28,7 @@ class WebActivityFanPower : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_fan_power)
+
 //
          webView = findViewById(R.id.webView_)
 
@@ -78,6 +79,7 @@ class WebActivityFanPower : AppCompatActivity() {
         var widgetHeight : Int= Utils.pxFromDp(this,620f).toInt() // provide your size in the function
         var topMargin = Utils.pxFromDp(this,rects.get(0).top.toFloat()) - Utils.pxFromDp(this,rects.get(0).height().toFloat()) - Utils.pxFromDp(this,50f)
         var bottomMargin = webViewHeight - (topMargin + widgetHeight)
+
 
 
         fanPowerView.initViewWithInline("your-tokenForJwtRequest",

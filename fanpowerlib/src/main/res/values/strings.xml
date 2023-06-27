@@ -9,9 +9,13 @@
     <string name="didn_t_get_the_code_click_to_resend_it">Didn\'t get the code? Click to resend it</string>
     <string name="enter_the_code_you_received">ENTER THE CODE YOU RECEIVED ⏳</string>
     <string name="or_use_your_email_address">Or use your email address</string>
+    <string name="or_use_your_phone_no">Or use your phone number</string>
 
     <string name="edittext_hint_email"><font size="19">johnsmith@gmail.com</font></string>
     <string name="edittext_hint_phone"><font size="19">enter phone number</font></string>
+    <string name="terms_conditions_">Yes, I have read and agree to NASCAR’s <a href="https://www.nascar.com/privacy-statement">Privacy Policy</a> and
+    <a href="https://www.nascar.com/terms-of-use/">Terms of Use.</a> I agree to receive communications from NASCAR on the latest news, events and promotions.\n You may opt out any time.
+</string>
 
 
 </resources>

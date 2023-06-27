@@ -163,6 +163,7 @@ class FanPowerView : RelativeLayout {
         if(!isInLineView) {
             webView = WebView(context)
         }
+        propIds = ArrayList()
 
         Utilities.getActivity(this)?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
@@ -488,7 +489,6 @@ class FanPowerView : RelativeLayout {
         private const val TAG = "Compass_View_Kotlin"
     }
 
-
     private fun setUpApis() {
         getIPLocationApi()
         if (SharedPrefs.Utils.getAuthToken(context) != null) {
@@ -500,7 +500,6 @@ class FanPowerView : RelativeLayout {
                         return
                     }
                     getPublisherDataFromServer()
-
                 }
 
                 override fun onFailure(messageResponse: MessageResponse) {
@@ -521,9 +520,7 @@ class FanPowerView : RelativeLayout {
     private fun getIPLocationApi() {
         ApiManager.getIPLocation(context, object : SuccessFailureCallback {
             override fun onSuccess() {
-
             }
-
             override fun onFailure(messageResponse: MessageResponse) {
 
             }

@@ -31,9 +31,7 @@ class ApiManager {
             // val adminToken = SharedPrefs.Utils.getAdminToken(context)
             val adminToken = SharedPrefs.Utils.getTokenForJWTRequest(context)
             Log.i(TAG, "getAuthToken: admin token is " + adminToken)
-            val responseExpenseCategorys: Call<String> = ApiFactory.getInstance()!!.getAuthToken(
-                adminToken
-            )
+            val responseExpenseCategorys: Call<String> = ApiFactory.getInstance()!!.getAuthToken(adminToken)
             responseExpenseCategorys.enqueue(object : Callback<String?> {
                 override fun onResponse(call: Call<String?>, response: Response<String?>) {
 
@@ -41,7 +39,6 @@ class ApiManager {
                         Log.i(TAG, "onResponse: " + response.body().toString())
                         SharedPrefs.Utils.saveAuthToken(context, response.body())
                         successFailureCallback.onSuccess()
-
                     }
                 }
 

@@ -5,10 +5,11 @@ import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
 import android.text.Editable
+import android.text.Html
 import android.text.InputType
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.*
 import android.view.View.OnFocusChangeListener
@@ -17,6 +18,7 @@ import android.webkit.WebView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -106,12 +108,56 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
         return view_
     }
 
+    private fun checkIfShouldEnableSendButton(editable: String,publisher: Publisher?){
+        var shouldSeeCheckBox = false
+        Log.i(TAG, "afterTextChanged: editable " + editable)
+        var settings = publisher?.settings
+        if(settings != null){
+            shouldSeeCheckBox = settings.require_terms_checkbox
+        }else{
+            shouldSeeCheckBox = false
+        }
+        if (editable.trim().isNullOrEmpty()) {
+            Log.i(TAG, "checkIfShouldEnableSendButton: empty" )
+            binding.sendBtn.setBackgroundResource(R.drawable.send_disabled)
+        } else {
+            if(shouldSeeCheckBox && !binding.iHaveReadCheckbox.isChecked) {
+                binding.sendBtn.setBackgroundResource(R.drawable.send_disabled)
+            }else{
+                binding.sendBtn.setBackgroundResource(R.drawable.send_selected)
+            }
+        }
+
+        if(isInLineView) {
+            if (webView != null)
+                webView.clearFocus()
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setUpView() {
         getProps()
 
         if (!SharedPrefs.Utils.getFanId(requireActivity()).isNullOrEmpty()) {
             getFanPicks()
+        }
+        binding.iHaveReadText.setMovementMethod(LinkMovementMethod.getInstance());
+        var publisher = SharedPrefs.Utils.getPublisher(requireActivity(),Publisher::class.java)
+        if(publisher != null){
+            var settings = publisher.settings
+//            if(settings != null){
+//              if(settings.require_terms_checkbox){
+//                  binding.iHaveReadLayout.visibility = View.VISIBLE
+//              }else{
+//                  binding.iHaveReadLayout.visibility = View.GONE
+//              }
+//
+//                val spanned = HtmlCompat.fromHtml(settings.require_terms_content, HtmlCompat.FROM_HTML_MODE_COMPACT)
+//
+//                binding.iHaveReadText.setMovementMethod(LinkMovementMethod.getInstance());
+//
+//            //   binding.iHaveReadText.setText(spanned)
+//            }
         }
 
         binding.resendCodeText.setTextColor(SharedPrefs.Utils.getSecondaryColor(requireActivity()))
@@ -136,46 +182,15 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
             }
 
             override fun afterTextChanged(editable: Editable?) {
-                Log.i(TAG, "afterTextChanged: editable " + editable)
-                if (editable.isNullOrEmpty()) {
-                    binding.sendBtn.setBackgroundResource(R.drawable.send_disabled)
-                } else {
-                    binding.sendBtn.setBackgroundResource(R.drawable.send_selected)
-                }
-
-                if(isInLineView) {
-                    if (webView != null)
-                        webView.clearFocus()
-                }
+                checkIfShouldEnableSendButton(editable.toString(),publisher)
             }
         })
 
-//
-//        webView.setOnScrollChangeListener { view, scrollX, scrollY, oldScrollX, oldScrollY ->
-//
-//        }
 
-//        webView.setOnTouchListener(View.OnTouchListener { view, motionEvent -> // your code here....
-//            Log.i(TAG, "setUpView: on touch listener webview")
-//            if(isEditing){
-//                Log.i(TAG, "setUpView: is editext visible")
-//                webView.clearFocus()
-//                isEditing = false
-//                true
-//            }else {
-//                false
-//            }
-//        })
+        binding.iHaveReadCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            checkIfShouldEnableSendButton(binding.editTextCarrierNumber.text.toString(),publisher)
+        }
 
-//        binding.editTextCarrierNumber.setOnClickListener {
-//
-//        }
-
-//        binding.editTextCarrierNumber.setOnTouchListener(View.OnTouchListener { view, motionEvent -> // your code here....
-//            Log.i(TAG, "setUpView: on touch listener edittext")
-//
-//            false
-//        })
 
         binding.editTextCarrierNumber.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
@@ -233,18 +248,20 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
         }
 
         binding.sendBtn.setOnClickListener {
+            var shouldSeeCheckBox = false
+            var settings = publisher?.settings
+            if(settings != null){
+                shouldSeeCheckBox = settings.require_terms_checkbox
+            }else{
+                shouldSeeCheckBox = false
+            }
+            
             if (binding.editTextCarrierNumber.text.toString().isNotEmpty()) {
-                if (enterCodeMode) {
-                    binding.progressBar.visibility = View.VISIBLE
-                    var code =  binding.editTextCarrierNumber.text.toString().trim()
-                    sendVerifyFanApi(code)
-                } else {
-                    Log.i(TAG, "setUpView: is not empty")
-                    if(isEmailMode) {
-                        sendEmailValidation()
-                    }else{
-                        sendAuthenticateFanApi()
-                    }
+                if(shouldSeeCheckBox && !binding.iHaveReadCheckbox.isChecked){
+                    // checkbox is not checked
+                    Log.i(TAG, "setUpView: checkbox is not checked")
+                }else {
+                    sendVerifyClicked()
                 }
             } else {
                 Log.i(TAG, "setUpView: is empty")
@@ -318,6 +335,23 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
         })
 
         binding.recyclerView.smoothScrollToPosition(0);
+
+       // switchToOtherModeToVerify()
+    }
+    
+    private fun sendVerifyClicked(){
+        if (enterCodeMode) {
+            binding.progressBar.visibility = View.VISIBLE
+            var code =  binding.editTextCarrierNumber.text.toString().trim()
+            sendVerifyFanApi(code)
+        } else {
+            Log.i(TAG, "setUpView: is not empty")
+            if(isEmailMode) {
+                sendEmailValidation()
+            }else{
+                sendAuthenticateFanApi()
+            }
+        }
     }
 
     private fun sendEmailValidation() {
@@ -409,18 +443,21 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
     }
 
     private fun switchToOtherModeToVerify() {
+        Log.i(TAG, "switchToOtherModeToVerify: isemailmode " + isEmailMode)
         if (isEmailMode) { // change to phone mode
             binding.countryCodePicker.visibility = View.VISIBLE
 
             binding.editTextCarrierNumber.setHint(R.string.edittext_hint_phone)
             binding.editTextCarrierNumber.setText("")
-            binding.resendCodeText.setText("or use your email address")
+            binding.resendCodeText.setText(R.string.or_use_your_email_address)
             binding.editTextCarrierNumber.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
         } else { // change to email view
             binding.countryCodePicker.visibility = View.GONE
             binding.editTextCarrierNumber.setHint(R.string.edittext_hint_email)
             binding.editTextCarrierNumber.setText("")
-            binding.resendCodeText.setText("or use your phone number")
+
+            binding.resendCodeText.setText("")
+                //     binding.resendCodeText.setText(R.string.or_use_your_phone_no)
             binding.editTextCarrierNumber.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
         }
         isEmailMode = !isEmailMode
@@ -462,6 +499,7 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
                 binding.verifyTitle.setText(R.string.verify_your_pick_to_see_results)
                 isEmailMode = true
                 enterCodeMode = false
+                Log.i(TAG, "onFinish: on timer end")
                 switchToOtherModeToVerify()
 
             }
@@ -625,6 +663,10 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
                     var ad : AdsResponseItem  = list.get(0)
                     Log.i(TAG, "onSuccess: add to load " + ad)
                     Picasso.get().load(ad.ad_image).into(binding.adImage)
+
+                    binding.adImage.setOnClickListener(){
+                        Utilities.openUrl(requireActivity(),ad.ad_url)
+                    }
                 }
             }
 
@@ -632,7 +674,11 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
 
             }
         })
+
+
     }
+
+
 
 
 }

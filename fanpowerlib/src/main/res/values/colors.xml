@@ -52,5 +52,6 @@
     <color name="answer_list_title_grey">#701D0A2C</color>
 
     <color name="transparent">#00000000</color>
+    <color name="blue_checkbox">#3E7DE2</color>
 
 </resources>

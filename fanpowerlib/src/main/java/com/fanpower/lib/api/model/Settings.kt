@@ -1,3 +1,4 @@
 package com.fanpower.lib.api.model
 
-class Settings
+data class Settings(  val require_terms_content : String,
+                      val require_terms_checkbox : Boolean)
