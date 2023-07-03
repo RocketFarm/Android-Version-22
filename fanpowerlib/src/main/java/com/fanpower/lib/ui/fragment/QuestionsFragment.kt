@@ -66,7 +66,7 @@ class QuestionsFragment(onsucessCallback : VerificationPopUpShownCallback,webVie
 
 
     var enterCodeMode = false
-    var isEmailMode = false
+    var isEmailMode = true // TODO false it if default is number
     var selectedPickId = ""
     var selectedPickTitle = ""
 

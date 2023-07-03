@@ -81,7 +81,6 @@ class WebActivityFanPower : AppCompatActivity() {
         var bottomMargin = webViewHeight - (topMargin + widgetHeight)
 
 
-
         fanPowerView.initViewWithInline("your-tokenForJwtRequest",
             0, // your-publisherId
             "your-publisherToken",
